@@ -1,0 +1,40 @@
+name: publish-to-ossrh
+on:
+  workflow_dispatch:
+    inputs:
+      artifactCode:
+        description: '构件编码'
+        required: true
+        type: choice
+        options:
+          - info
+          - notice
+        default: info
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+      - name: set up jdk 8 and maven
+        uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+          server-id: ossrh
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_PASSWORD
+      - name: install gpg secret key
+        run: |
+          cat <(echo -e "${{ secrets.GPG_PRIVATE_KEY }}") | gpg --batch --import
+          gpg --list-secret-keys --keyid-format LONG
+      - name: set current artifact
+        run: |
+          if [ "${{ github.event.inputs.artifactCode }}" == "info" ]; then echo "artifact_dir=maven-info-extension" >> $GITHUB_ENV; elif [ "${{ github.event.inputs.artifactCode }}" == "notice" ]; then echo "artifact_dir=maven-notice-plugin" >> $GITHUB_ENV; else echo "无效的构件编码" && exit 1; fi
+      - name: publish artifact
+        env:
+          MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+        run: |
+          cd $artifact_dir
+          mvn --batch-mode -Dgpg.passphrase=${{ secrets.GPG_PASSPHRASE }} clean deploy -P ossrh

@@ -1,2 +1,3 @@
-# sk-maven-enhancer
-sk maven enhancer
+# maven增强器
+- 打印一些信息的扩展
+- 打印一些注意的插件
