@@ -16,6 +16,7 @@
     <modules>
         <module>maven-info-extension</module>
         <module>maven-notice-plugin</module>
+        <module>maven-resource-hub</module>
     </modules>
 
     <properties>

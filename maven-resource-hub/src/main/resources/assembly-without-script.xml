@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly>
+    <id>${project.version}</id>
+
+    <!-- 格式 -->
+    <formats>
+        <format>zip</format>
+    </formats>
+
+    <!-- 依赖 -->
+    <dependencySets>
+        <dependencySet>
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>lib</outputDirectory>
+            <unpack>false</unpack>
+        </dependencySet>
+    </dependencySets>
+
+    <fileSets>
+        <!-- conf -->
+        <fileSet>
+            <directory>src/main/resources</directory>
+            <includes>
+                <include>**/*</include>
+            </includes>
+            <outputDirectory>conf</outputDirectory>
+        </fileSet>
+        <!-- boot -->
+        <fileSet>
+            <directory>${project.build.directory}</directory>
+            <includes>
+                <include>${project.artifactId}.jar</include>
+            </includes>
+            <outputDirectory>boot</outputDirectory>
+        </fileSet>
+        <!-- 其他 -->
+        <fileSet>
+            <directory>.</directory>
+            <includes>
+                <include>LICENSE</include>
+                <include>README.md</include>
+            </includes>
+            <outputDirectory>.</outputDirectory>
+        </fileSet>
+    </fileSets>
+</assembly>

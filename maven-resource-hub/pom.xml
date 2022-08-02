@@ -1,0 +1,44 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.sikejava.framework.parent</groupId>
+        <artifactId>sk-maven-parent</artifactId>
+        <version>2.0.0</version>
+    </parent>
+
+    <groupId>com.sikejava.framework.maven</groupId>
+    <artifactId>maven-resource-hub</artifactId>
+    <version>1.0.0</version>
+
+    <packaging>jar</packaging>
+
+    <name>maven-resource-hub</name>
+    <description>maven resource hub</description>
+    <url>http://www.sikejava.com</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/skjv2014/sk-maven-enhancer</url>
+        <connection>scm:git:git://github.com/skjv2014/sk-maven-enhancer.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/skjv2014/sk-maven-enhancer.git</developerConnection>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>skjv2014</name>
+            <email>skjv2014@163.com</email>
+            <url>https://github.com/skjv2014</url>
+        </developer>
+    </developers>
+
+</project>

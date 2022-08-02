@@ -9,6 +9,7 @@ on:
         options:
           - info
           - notice
+          - resource
         default: info
 jobs:
   publish:
@@ -30,7 +31,7 @@ jobs:
           gpg --list-secret-keys --keyid-format LONG
       - name: set current artifact
         run: |
-          if [ "${{ github.event.inputs.artifactCode }}" == "info" ]; then echo "artifact_dir=maven-info-extension" >> $GITHUB_ENV; elif [ "${{ github.event.inputs.artifactCode }}" == "notice" ]; then echo "artifact_dir=maven-notice-plugin" >> $GITHUB_ENV; else echo "无效的构件编码" && exit 1; fi
+          if [ "${{ github.event.inputs.artifactCode }}" == "info" ]; then echo "artifact_dir=maven-info-extension" >> $GITHUB_ENV; elif [ "${{ github.event.inputs.artifactCode }}" == "notice" ]; then echo "artifact_dir=maven-notice-plugin" >> $GITHUB_ENV; elif [ "${{ github.event.inputs.artifactCode }}" == "resource" ]; then echo "artifact_dir=maven-resource-hub" >> $GITHUB_ENV; else echo "无效的构件编码" && exit 1; fi
       - name: publish artifact
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
